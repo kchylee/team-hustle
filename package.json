@@ -1,0 +1,27 @@
+{
+  "name": "team-hustle",
+  "version": "0.0.0",
+  "description": "A tool that provides qualitative insight into Toronto Public Library branch behaviour/trends/mentality.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "local": "nodemon index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kchylee/team-hustle.git"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/kchylee/team-hustle/issues"
+  },
+  "homepage": "https://github.com/kchylee/team-hustle#readme",
+  "dependencies": {
+    "nodemon": "^1.11.0"
+  },
+  "devDependencies": {
+    "morgan": "^1.8.2"
+  }
+}
