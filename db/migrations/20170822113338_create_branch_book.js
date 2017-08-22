@@ -1,8 +1,10 @@
 
 exports.up = function(knex, Promise) {
   return knex.schema.table('branch_books', function(table) {
-    table.integer('branch_id').references('branches.id').onDelete('CASCADE');
-    table.integer('isbn').references('books.isbn').onDelete('CASCADE');
+    table.integer('branch_id');
+    table.foreign('branch_id').references('branches.id').onDelete('CASCADE');
+    table.integer('isbn');
+    table.foreign('isbn').references('books.isbn').onDelete('CASCADE');
     table.integer('checkout_frequency');
   });
 };
