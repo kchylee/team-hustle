@@ -2,9 +2,9 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('book_category', function(table) {
     table.integer('book_id');
-    table.foreign('book_id').references('book.id').onDelete('CASCADE');
+    table.foreign('book_id').references('books.id').onDelete('CASCADE');
     table.integer('category_id');
-    table.foreign('category_id').references('category.id').onDelete('CASCADE');
+    table.foreign('category_id').references('categories.id').onDelete('CASCADE');
   })
 };
 
