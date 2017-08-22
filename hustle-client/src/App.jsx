@@ -28,8 +28,8 @@ class App extends React.Component {
 
 	render() {
 
-		let categoryArr = this.state.catArr.map((a, i) => {
-			return <div key={i} >{a} </div>
+		let categoryArr = this.state.catArr.map((value, i) => {
+			return <div key={i} className="Word"> {value} </div>
 		});
     return (
     <div className="App">
