@@ -16,6 +16,7 @@ class App extends React.Component {
 
     this.handleBranchChange = this.handleBranchChange.bind(this);
     this.handleFilterChange = this.handleFilterChange.bind(this);
+    this.handleMouseOver = this.handleMouseOver.bind(this);
 	}
 
 	handleBranchChange(event) {
@@ -26,10 +27,20 @@ class App extends React.Component {
 		console.log("filterChange");
 	}
 
+	handleMouseOver(event) {
+		console.log("mouseOver")
+		event.target.style.color = "orange";
+	}
+
+	handleMouseOut(event) {
+		console.log("mouseOut");
+		event.target.style.color = "";
+	}
+
 	render() {
 
 		let categoryArr = this.state.catArr.map((value, i) => {
-			return <div key={i} className="Word"> {value} </div>
+			return <div key={i} className="Word" onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut}> {value} </div>
 		});
     return (
     <div className="App">
