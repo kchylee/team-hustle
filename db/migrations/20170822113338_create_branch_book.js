@@ -13,8 +13,8 @@ exports.down = function(knex, Promise) {
   return knex.schema.table('branch_books', function(table) {
     table.dropForeign('branch_id');
     table.dropColumn('branch_id');
-    table.dropForeign('isbn');
-    table.dropColumn('isbn');
+    table.dropForeign('book_id');
+    table.dropColumn('book_id');
     table.dropColumn('frequency');
   });
 };
