@@ -3,9 +3,9 @@ exports.up = function(knex, Promise) {
   return knex.schema.table('branch_books', function(table) {
     table.integer('branch_id');
     table.foreign('branch_id').references('branches.id').onDelete('CASCADE');
-    table.integer('isbn');
-    table.foreign('isbn').references('books.isbn').onDelete('CASCADE');
-    table.integer('checkout_frequency');
+    table.integer('book_id');
+    table.foreign('book_id').references('books.id').onDelete('CASCADE');
+    table.integer('frequency');
   });
 };
 
@@ -15,6 +15,6 @@ exports.down = function(knex, Promise) {
     table.dropColumn('branch_id');
     table.dropForeign('isbn');
     table.dropColumn('isbn');
-    table.dropColumn('checkout_frequency');
+    table.dropColumn('frequency');
   });
 };
