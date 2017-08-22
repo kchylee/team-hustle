@@ -25,25 +25,20 @@ class App extends React.Component {
     return (
     <div className="App">
         <div className="App-header">   
-	        <Icon type="ibm" className="App-logo"/>
-
+	        {/*<Icon type="loader" className="App-logo"/>*/}
+    		
+    		<img className="TPL-logo" src="https://goo.gl/F4g2EW" alt="TPLlogo"/>
 	        <div className="Selectors">
+    		<div className="text">Select branch(es):</div>
 		        <select className="Selectors-branch" onChange={this.handleBranchChange}>
 		          <option>Againcourt</option>
 		          <option>Bloor Gladstone</option>
 		          <option>Parkdale</option>
 		          <option>Fort York</option>
 		        </select>
-
-		        <select className="Selectors-filter" onChange={this.handleFilterChange}>
-		          <option>Category</option>
-		          <option>Keyword</option>
-		          <option>Sentiment</option>
-		        </select>
         	</div>
-
-        
         </div>
+
         <div className="WordMaps">
         	<div className="WordMaps-large">
         	#In #placerat #efficitur #arcu #ac #aliquet #Suspendisse #sed #enim #egestas #vestibulum #augue #eu #efficitur #sapien #In #placerat #efficitur
