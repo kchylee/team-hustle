@@ -6,7 +6,6 @@ exports.up = function(knex, Promise) {
     table.string('category').notNullable();
     table.string('title').notNullable();
     table.string('abstract');
-    table.integer('checkout_frequency');
   })
 };
 
