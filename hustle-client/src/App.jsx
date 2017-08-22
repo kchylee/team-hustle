@@ -1,4 +1,5 @@
 
+
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
@@ -8,6 +9,10 @@ class App extends React.Component {
 
 	constructor(props) {
 		super(props);
+
+		this.state = {
+			catArr: ["Test1", "Test2", "Test3"]
+		}
 
     this.handleBranchChange = this.handleBranchChange.bind(this);
     this.handleFilterChange = this.handleFilterChange.bind(this);
@@ -22,6 +27,10 @@ class App extends React.Component {
 	}
 
 	render() {
+
+		let categoryArr = this.state.catArr.map((a, i) => {
+			return <div key={i} >{a} </div>
+		});
     return (
     <div className="App">
         <div className="App-header">   
@@ -44,16 +53,8 @@ class App extends React.Component {
 
         
         </div>
-        <div className="WordMaps">
-        	<div className="WordMaps-large">
-        	#In #placerat #efficitur #arcu #ac #aliquet #Suspendisse #sed #enim #egestas #vestibulum #augue #eu #efficitur #sapien #In #placerat #efficitur
-			</div>
-        	<div className="WordMaps-medium">
-        	#In #placerat #efficitur #arcu #ac #aliquet #Suspendisse #sed #enim #egestas #vestibulum #augue #eu #efficitur #sapien #In #placerat #efficitur #arcu #ac #aliquet #Suspendisse #sed #enim
-        	</div>
-        	<div className="WordMaps-small">
-        	#In #placerat #efficitur #arcu #ac #aliquet #Suspendisse #sed #enim #egestas #vestibulum #augue #eu #efficitur #sapien#In #placerat #efficitur #arcu #ac #aliquet #Suspendisse #sed #enim #egestas #vestibulum
-        	</div>
+        <div className="Word_Map">
+        	{categoryArr}
         </div>
       </div>
     );
