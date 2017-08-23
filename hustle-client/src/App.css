@@ -1,5 +1,6 @@
 .App {
   text-align: left;
+  font-family: 'Mada', sans-serif;
 }
 
   {/*a.App-logo {
@@ -22,6 +23,7 @@
 }
 
 .TPL-logo {
+  margin-top: 10px;
   max-width: 20%;
 }
 
@@ -29,11 +31,14 @@
 .text {
   color: white;
   text-align: center;
+  margin-top: 20px;
+  margin-bottom: 5px;
 }
 
 .Selectors-branch {
   width: 100%;
   padding: 10px;
+  margin-bottom: 10px;
 }
 
 /*customize select*/
@@ -73,12 +78,9 @@ select:disabled::-ms-expand {
 }
 
 .Word {
-  font-size:100px;
+  font-size:100%;
   padding: 10px;
-}
-
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  background-color: orange;
+  border-radius: 10px;
+  margin: 5px;
 }

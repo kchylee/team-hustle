@@ -18,7 +18,6 @@ class App extends React.Component {
     this.handleFilterChange = this.handleFilterChange.bind(this);
     this.handleMouseOver = this.handleMouseOver.bind(this);
 	}
-
 	handleBranchChange(event) {
 		console.log("branchChange");
 	}
@@ -28,14 +27,18 @@ class App extends React.Component {
 	}
 
 	handleMouseOver(event) {
-		console.log("mouseOver")
-		event.target.style.color = "orange";
+		console.log("mouseOver");
+		event.target.style.color = "white";
+		event.target.style.font = "20px Mada,sans-serif";
 	}
 
 	handleMouseOut(event) {
 		console.log("mouseOut");
 		event.target.style.color = "";
+		event.target.style.font = "";
 	}
+
+
 
 	render() {
 
@@ -45,8 +48,7 @@ class App extends React.Component {
     return (
     <div className="App">
         <div className="App-header">   
-	        {/*<Icon type="loader" className="App-logo"/>*/}
-    		
+
     		<img className="TPL-logo" src="https://goo.gl/F4g2EW" alt="TPLlogo"/>
 	        <div className="Selectors">
     		<div className="text">Select branch(es):</div>
