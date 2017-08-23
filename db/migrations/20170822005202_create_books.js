@@ -4,6 +4,7 @@ exports.up = function(knex, Promise) {
     table.increments('id');
     table.bigInteger('isbn').notNullable();
     table.string('title').notNullable();
+    table.string('author').notNullable();
     table.text('abstract');
   })
 };
