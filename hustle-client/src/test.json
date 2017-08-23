@@ -1,0 +1,42 @@
+[
+  {
+    "category": "green",
+    "frequency": 100
+  },
+  {
+    "category": "brown",
+    "frequency": 134
+  },
+  {
+    "category": "green",
+    "frequency": 204
+  },
+  {
+    "category": "green",
+    "frequency": 100
+  },
+  {
+    "category": "green",
+    "frequency": 120
+  },
+  {
+    "category": "green",
+    "frequency": 100
+  },
+  {
+    "category": "blue",
+    "frequency": 204
+  },
+  {
+    "category": "brown",
+    "frequency": 120
+  },
+  {
+    "category": "brown",
+    "frequency": 120
+  },
+  {
+    "category": "brown",
+    "frequency": 120
+  }
+]
