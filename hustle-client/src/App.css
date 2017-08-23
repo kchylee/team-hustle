@@ -78,7 +78,7 @@ select:disabled::-ms-expand {
 }
 
 .Word {
-  font-size:100%;
+  font-size:100px;
   padding: 10px;
   background-color: orange;
   border-radius: 10px;
