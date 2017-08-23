@@ -12,8 +12,8 @@ class App extends React.Component {
 		super(props);
 
 		this.state = {
-			catArr: ["Test1", "Test2", "Test3"],
-			freqArr: [100, 200, 300]
+			catArr: ["Test1", "Test2", "Test3", "Test4", "Test5", "Test6","Test7","Test1", "Test2", "Test3", "Test4", "Test5", "Test6"],
+			freqArr: [600, 400, 100, 100, 100, 100, 100, 50, 50, 50, 50, 50, 50]
 		}
 
     this.handleBranchChange = this.handleBranchChange.bind(this);
@@ -31,11 +31,13 @@ class App extends React.Component {
 	handleMouseOver(event) {
 		console.log("mouseOver");
 		event.target.style.color = "white";
+		event.target.style.backgroundColor = "orange";
 	}
 
 	handleMouseOut(event) {
 		console.log("mouseOut");
 		event.target.style.color = "";
+		event.target.style.backgroundColor = "";
 	}
 
 	wordSizeNormalizer(num) {
@@ -68,8 +70,8 @@ class App extends React.Component {
 			style= {sizeStyle}
 			>
 			{value} </div>
-			<ReactTooltip place="top" type="dark" effect="float"/> </div>
-
+			<ReactTooltip className="customeTheme" place="top" type="light" effect="float"/>
+		 </div>
 		});
 
     return (

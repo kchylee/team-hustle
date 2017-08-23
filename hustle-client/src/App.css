@@ -1,13 +1,14 @@
-.App {
-  text-align: left;
-  font-family: 'Mada', sans-serif;
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #91b8ea;
 }
 
-  {/*a.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: auto;
-  width: auto;
-  background-color: white;*/}
+.App {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  overflow: auto;
+}
 
 .App-header {
   overflow: hidden;
@@ -75,12 +76,26 @@ select:disabled::-ms-expand {
   font-size:100px;
   display: flex;
   flex-wrap: wrap;
+  color: white;
+  background-color: #91b8ea;
 }
 
 .Word {
   font-size:100px;
   padding: 10px;
-  background-color: orange;
+  background-color: #91b8ea;
   border-radius: 10px;
   margin: 5px;
+}
+/*custom hover*/
+.customeTheme {
+  color: #ff6e00 !important;
+  background-color: white !important;
+  &.place-top {
+  &:after {
+  border-top-color: white !important;
+  border-top-style: solid !important;
+  border-top-width: 20px !important;
+  }
+  }
 }
