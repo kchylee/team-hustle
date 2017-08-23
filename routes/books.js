@@ -9,7 +9,7 @@ module.exports = (knex) => {
       .select('*')
       .from('books')
       .then((result) => {
-        // do something
+        res.json(result);
       })
   })
 

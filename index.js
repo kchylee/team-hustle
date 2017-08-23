@@ -26,21 +26,21 @@ const morgan      = require('morgan');
 app.use(morgan('dev'));
 
 //Import routes here
-let addBookRoute = require('./routes/addBook');
+let booksRoute = require('./routes/books');
 let indexRoute = require('./routes/index');
 let watsonNLURoute = require('./routes/watsonNLU');
 
 //Specify routes here
 app.use('/', indexRoute());
-app.use('/addBook', addBookRoute(knex));
+app.use('/books', booksRoute(knex));
 app.use('/watsonNLU', watsonNLURoute());
 
-let port = process.env.PORT || process.env.VCAP_APP_PORT || 3000;
+let PORT = process.env.PORT || process.env.VCAP_APP_PORT || 3001;
 
 // error-handler settings
 require('./config/error-handler')(app);
 
 // Start the server
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port} or http://127.0.0.1:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT} or http://127.0.0.1:${PORT}`);
 });
