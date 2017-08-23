@@ -7,7 +7,7 @@ const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 
 // Deployment tracking
-// require('cf-deployment-tracker-client').track();
+require('cf-deployment-tracker-client').track();
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
