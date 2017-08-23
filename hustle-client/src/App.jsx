@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {Icon, Header, Jumbotron, Code, Tabs } from 'watson-react-components/dist/components';
+import ReactTooltip from 'react-tooltip'
 
 class App extends React.Component {
 
@@ -40,7 +41,9 @@ class App extends React.Component {
 	render() {
 
 		let categoryArr = this.state.catArr.map((value, i) => {
-			return <div key={i} className="Word" onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut}> {value} </div>
+			return <div> <div key={i} className="Word" onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} data-tip="test"> {value} </div>
+			<ReactTooltip place="top" type="dark" effect="float"/> </div>
+
 		});
     return (
     <div className="App">
@@ -62,7 +65,7 @@ class App extends React.Component {
         <div className="Word_Map">
         	{categoryArr}
         </div>
-        
+
       </div>
     );
   }
