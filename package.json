@@ -26,6 +26,7 @@
     "express-rate-limit": "^2.9.0",
     "express-secure-only": "^0.2.1",
     "helmet": "^3.8.1",
+    "iconv-lite": "^0.4.18",
     "knex": "^0.13.0",
     "knex-logger": "^0.1.0",
     "nodemon": "^1.11.0",
