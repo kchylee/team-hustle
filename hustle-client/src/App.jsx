@@ -5,8 +5,6 @@ import logo from './logo.svg';
 import './App.css';
 import {Icon, Header, Jumbotron, Code, Tabs } from 'watson-react-components/dist/components';
 import ReactTooltip from 'react-tooltip'
-import customData from './test.json';
-
 
 class App extends React.Component {
 
@@ -18,8 +16,6 @@ class App extends React.Component {
 			freqArr: []
 		}
 
-		
-
     this.handleBranchChange = this.handleBranchChange.bind(this);
     this.handleFilterChange = this.handleFilterChange.bind(this);
     this.handleMouseOver = this.handleMouseOver.bind(this);
@@ -29,6 +25,10 @@ class App extends React.Component {
 
 	handleBranchChange(event) {
 		console.log("branchChange");
+
+		//TODO: get branch id.
+		this.updateBranchWordMap(1);
+		
 	}
 
 	handleFilterChange(event) {
@@ -47,8 +47,26 @@ class App extends React.Component {
 		event.target.style.backgroundColor = "";
 	}
 
-	populateWordMap () {
-		const wordObj = customData;
+	updateBranchWordMap(branchID) {
+		this.fetchCategoryJSON(branchID).then ((categoryJSON) => {
+			this.populateWordMap(categoryJSON);
+		});
+	}
+
+	fetchCategoryJSON(branchID) {
+		var fetchRequest = new Request("/categories/frequency/" + branchID.toString());
+		console.log(fetchRequest.url);
+
+		
+		return fetch(fetchRequest)
+		.then((response) => response.json())
+		.then((categoryJSON) => {
+			return categoryJSON;
+		});
+	}
+
+	populateWordMap (catJSON) {
+		const wordObj = catJSON;
 		let objCat = [];
 		let objFreq = [];
 
@@ -62,9 +80,6 @@ class App extends React.Component {
          	catArr: objCat,
  			freqArr: objFreq
  	      });
-
-		console.log(objCat);
-		console.log(objFreq);
 	}
 
 	wordSizeNormalizer(num) {
@@ -76,11 +91,15 @@ class App extends React.Component {
 		else {
 		const answer = ((num - minFontSize) / (maxFontSize - minFontSize)) * maxFontSize;
 		return answer;
+		}
 	}
 
+	componentWillMount() {
+		//Default starting map.
+		this.updateBranchWordMap(1);
 	}
+	
 	render() {
-		this.populateWordMap();
 
 		let frequencyArr = this.state.freqArr.map((value) => {
 			return value;
@@ -108,20 +127,19 @@ class App extends React.Component {
 
     		<img className="TPL-logo" src="https://goo.gl/F4g2EW" alt="TPLlogo"/>
 	        <div className="Selectors">
-    		<div className="text">Select branch(es):</div>
+    		<div className="text">People at </div>
 		        <select className="Selectors-branch" onChange={this.handleBranchChange}>
 		          <option>Againcourt</option>
 		          <option>Bloor Gladstone</option>
 		          <option>Parkdale</option>
 		          <option>Fort York</option>
 		        </select>
+		     <div className="text"> branch are most interested in these categories:</div>
         	</div>
         </div>
-
         <div className="Word_Map">
         	{categoryArr}
         </div>
-
       </div>
     );
   }
