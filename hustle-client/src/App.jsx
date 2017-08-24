@@ -150,6 +150,11 @@ class App extends React.Component {
 		        </select>
 		     <div className="text"> branch are most interested in these categories:</div>
         	</div>
+
+        	<div className="IBM-container">
+        		<div className="powered-text">Powered by </div>
+        		<Icon type="ibm" className="ibm-logo"/>
+        	</div>
         </div>
         <div className="Word_Map">
         	{categoryArr}
