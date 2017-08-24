@@ -73,11 +73,35 @@ class App extends React.Component {
 		const wordObj = catJSON;
 		let objCat = [];
 		let objFreq = [];
-
+		
 		for(var i=0; i < wordObj.length; i++)
-		{
-			objCat[i] = wordObj[i].category;
-			objFreq[i] = wordObj[i].frequency;
+			{
+
+			let watsonCat = [];
+			let individualCat = wordObj[i].category.split('/');
+
+				console.log('typeof ' + individualCat + ': ' + typeof(individualCat));
+
+				for(let j=0; j < individualCat.length; j++) {
+					console.log(j);
+
+					if(!objCat.includes(j)) {
+						watsonCat.push({ name: j, frequency: wordObj[i].frequency });
+					}
+				}
+
+				// for(cat of individualCat) {
+				// 	console.log(cat);
+
+				// 	if (!objCat.includes(cat)) {
+				// 		watsonCat.push({ name: cat, frequency: wordObj[i].frequency });
+				// 	}
+				// }
+
+			// watsonCat[i] = { name: wordObj[i].category, frequency: wordObj[i].frequency };
+
+			// objCat[i] = wordObj[i].category;
+			// objFreq[i] = wordObj[i].frequency;
 		}
 
 		 this.setState({
