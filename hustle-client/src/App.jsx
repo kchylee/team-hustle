@@ -108,20 +108,19 @@ class App extends React.Component {
 
     		<img className="TPL-logo" src="https://goo.gl/F4g2EW" alt="TPLlogo"/>
 	        <div className="Selectors">
-    		<div className="text">Select branch(es):</div>
+    		<div className="text">People at </div>
 		        <select className="Selectors-branch" onChange={this.handleBranchChange}>
 		          <option>Againcourt</option>
 		          <option>Bloor Gladstone</option>
 		          <option>Parkdale</option>
 		          <option>Fort York</option>
 		        </select>
+		     <div className="text"> branch are most interested in these categories:</div>
         	</div>
         </div>
-
         <div className="Word_Map">
         	{categoryArr}
         </div>
-
       </div>
     );
   }
