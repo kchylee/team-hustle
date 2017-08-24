@@ -5,8 +5,6 @@ import logo from './logo.svg';
 import './App.css';
 import {Icon, Header, Jumbotron, Code, Tabs } from 'watson-react-components/dist/components';
 import ReactTooltip from 'react-tooltip'
-import customData from './test.json';
-
 
 class App extends React.Component {
 
@@ -27,7 +25,10 @@ class App extends React.Component {
 
 	handleBranchChange(event) {
 		console.log("branchChange");
-		this.populateWordMap();
+
+		//TODO: get branch id.
+		this.updateBranchWordMap(1);
+		
 	}
 
 	handleFilterChange(event) {
@@ -46,8 +47,26 @@ class App extends React.Component {
 		event.target.style.backgroundColor = "";
 	}
 
-	populateWordMap () {
-		const wordObj = customData;
+	updateBranchWordMap(branchID) {
+		this.fetchCategoryJSON(branchID).then ((categoryJSON) => {
+			this.populateWordMap(categoryJSON);
+		});
+	}
+
+	fetchCategoryJSON(branchID) {
+		var fetchRequest = new Request("/categories/frequency/" + branchID.toString());
+		console.log(fetchRequest.url);
+
+		
+		return fetch(fetchRequest)
+		.then((response) => response.json())
+		.then((categoryJSON) => {
+			return categoryJSON;
+		});
+	}
+
+	populateWordMap (catJSON) {
+		const wordObj = catJSON;
 		let objCat = [];
 		let objFreq = [];
 
@@ -61,9 +80,6 @@ class App extends React.Component {
          	catArr: objCat,
  			freqArr: objFreq
  	      });
-
-		console.log(objCat);
-		console.log(objFreq);
 	}
 
 	wordSizeNormalizer(num) {
@@ -79,8 +95,10 @@ class App extends React.Component {
 	}
 
 	componentWillMount() {
-		this.populateWordMap();
+		//Default starting map.
+		this.updateBranchWordMap(1);
 	}
+	
 	render() {
 
 		let frequencyArr = this.state.freqArr.map((value) => {
