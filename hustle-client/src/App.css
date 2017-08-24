@@ -46,7 +46,7 @@ body {
 }
 
 .Selectors-branch {
-  width: 15%;
+  width: auto;
   margin-right: 10px;
   margin-left: 10px;
   font-family: 'Roboto', sans-serif;

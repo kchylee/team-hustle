@@ -26,8 +26,10 @@ class App extends React.Component {
 	handleBranchChange(event) {
 		console.log("branchChange");
 
+			console.log(event.target.value);
+
 		//TODO: get branch id.
-		this.updateBranchWordMap(1);
+		this.updateBranchWordMap(event.target.value);
 		
 	}
 
@@ -66,6 +68,8 @@ class App extends React.Component {
 	}
 
 	populateWordMap (catJSON) {
+
+
 		const wordObj = catJSON;
 		let objCat = [];
 		let objFreq = [];
@@ -83,15 +87,26 @@ class App extends React.Component {
 	}
 
 	wordSizeNormalizer(num) {
-		let maxFontSize = 150;
-		let minFontSize = 30;
+		const frequencyArr = this.state.freqArr;
+		const maxFontSize = 80;
 
+
+
+		let maxFrequency = frequencyArr[0];
+		let minFrequency = frequencyArr[frequencyArr.length - 1];
+
+
+		const answer = ((num - minFrequency) / (maxFrequency - minFrequency)) * maxFontSize;
+
+		return answer;
+		/*
 		if (num >= maxFontSize) {return maxFontSize}
 		else if(num <= minFontSize) {return minFontSize}
 		else {
-		const answer = ((num - minFontSize) / (maxFontSize - minFontSize)) * maxFontSize;
+		const answer = ((num - minFrequency) / (maxFontSize - minFontSize)) * maxFontSize;
 		return answer;
 		}
+		*/
 	}
 
 	componentWillMount() {
@@ -129,10 +144,9 @@ class App extends React.Component {
 	        <div className="Selectors">
     		<div className="text">People at </div>
 		        <select className="Selectors-branch" onChange={this.handleBranchChange}>
-		          <option>Againcourt</option>
-		          <option>Bloor Gladstone</option>
-		          <option>Parkdale</option>
-		          <option>Fort York</option>
+		          <option value='1'>Toronto Reference</option>
+		          <option value='2'>North York Central</option>
+		          <option value='3'>Leaside</option>
 		        </select>
 		     <div className="text"> branch are most interested in these categories:</div>
         	</div>
