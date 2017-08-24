@@ -29,18 +29,29 @@ body {
 }
 
 /*SELECTORS*/
+
+.Selectors {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  margin-top: 20px;
+  width: 100%;
+  justify-content: center;
+}
+
 .text {
   color: white;
-  text-align: center;
-  margin-top: 20px;
-  margin-bottom: 5px;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .Selectors-branch {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
+  width: 15%;
+  margin-right: 10px;
+  margin-left: 10px;
+  font-family: 'Roboto', sans-serif;
 }
+
 
 /*customize select*/
 body select {
@@ -50,11 +61,12 @@ body select {
   border: 1px solid #e3e3e3;
   border-radius: 3px;
   background: url("https://image.ibb.co/iMeAJv/selectbox_arrow.png") right center no-repeat;
-  background-color: #fff;
-  color: #444444;
-  font-size: 12px;
+  background-color: #225;
+  color: #ffffff;
+  font-size: 16px;
   line-height: 16px !important;
   appearance: none;
+  text-align: center;
   /* this is must */
   -webkit-appearance: none; -moz-appearance: none;
 }
@@ -69,6 +81,7 @@ select::-ms-expand {
 select:disabled::-ms-expand { 
   background: #f60;
 }
+
 
 /*WORD MAPS*/
 
