@@ -5,6 +5,8 @@ import logo from './logo.svg';
 import './App.css';
 import {Icon, Header, Jumbotron, Code, Tabs } from 'watson-react-components/dist/components';
 import ReactTooltip from 'react-tooltip'
+import customData from './test.json';
+
 
 class App extends React.Component {
 
@@ -12,14 +14,19 @@ class App extends React.Component {
 		super(props);
 
 		this.state = {
-			catArr: ["Test1", "Test2", "Test3"],
-			freqArr: [100, 200, 300]
+			catArr: [],
+			freqArr: []
 		}
+
+		
 
     this.handleBranchChange = this.handleBranchChange.bind(this);
     this.handleFilterChange = this.handleFilterChange.bind(this);
     this.handleMouseOver = this.handleMouseOver.bind(this);
+    this.populateWordMap = this.populateWordMap.bind(this);
 	}
+
+
 	handleBranchChange(event) {
 		console.log("branchChange");
 	}
@@ -31,11 +38,33 @@ class App extends React.Component {
 	handleMouseOver(event) {
 		console.log("mouseOver");
 		event.target.style.color = "white";
+		event.target.style.backgroundColor = "orange";
 	}
 
 	handleMouseOut(event) {
 		console.log("mouseOut");
 		event.target.style.color = "";
+		event.target.style.backgroundColor = "";
+	}
+
+	populateWordMap () {
+		const wordObj = customData;
+		let objCat = [];
+		let objFreq = [];
+
+		for(var i=0; i < wordObj.length; i++)
+		{
+			objCat[i] = wordObj[i].category;
+			objFreq[i] = wordObj[i].frequency;
+		}
+
+		 this.setState({
+         	catArr: objCat,
+ 			freqArr: objFreq
+ 	      });
+
+		console.log(objCat);
+		console.log(objFreq);
 	}
 
 	wordSizeNormalizer(num) {
@@ -46,12 +75,13 @@ class App extends React.Component {
 		else if(num <= minFontSize) {return minFontSize}
 		else {
 		const answer = ((num - minFontSize) / (maxFontSize - minFontSize)) * maxFontSize;
-		console.log(answer);
 		return answer;
 	}
 
 	}
 	render() {
+		this.populateWordMap();
+
 		let frequencyArr = this.state.freqArr.map((value) => {
 			return value;
 		});
@@ -68,8 +98,8 @@ class App extends React.Component {
 			style= {sizeStyle}
 			>
 			{value} </div>
-			<ReactTooltip place="top" type="dark" effect="float"/> </div>
-
+			<ReactTooltip className="customeTheme" place="top" type="light" effect="float"/>
+		 </div>
 		});
 
     return (
