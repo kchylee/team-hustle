@@ -18,8 +18,6 @@ class App extends React.Component {
 			freqArr: []
 		}
 
-		
-
     this.handleBranchChange = this.handleBranchChange.bind(this);
     this.handleFilterChange = this.handleFilterChange.bind(this);
     this.handleMouseOver = this.handleMouseOver.bind(this);
@@ -29,6 +27,7 @@ class App extends React.Component {
 
 	handleBranchChange(event) {
 		console.log("branchChange");
+		this.populateWordMap();
 	}
 
 	handleFilterChange(event) {
@@ -76,11 +75,13 @@ class App extends React.Component {
 		else {
 		const answer = ((num - minFontSize) / (maxFontSize - minFontSize)) * maxFontSize;
 		return answer;
+		}
 	}
 
+	componentWillMount() {
+		this.populateWordMap();
 	}
 	render() {
-		this.populateWordMap();
 
 		let frequencyArr = this.state.freqArr.map((value) => {
 			return value;
