@@ -26,13 +26,13 @@ const morgan      = require('morgan');
 app.use(morgan('dev'));
 
 //Import routes here
-let booksRoute = require('./routes/books');
+let branchRoute = require('./routes/branch');
 let indexRoute = require('./routes/index');
 let watsonNLURoute = require('./routes/watsonNLU');
 
 //Specify routes here
 app.use('/', indexRoute());
-app.use('/books', booksRoute(knex));
+app.use('/api/branch', branchRoute(knex));
 app.use('/watsonNLU', watsonNLURoute());
 
 let PORT = process.env.PORT || process.env.VCAP_APP_PORT || 3001;
