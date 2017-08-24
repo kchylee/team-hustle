@@ -82,9 +82,11 @@ class App extends React.Component {
 					console.log(j);
 
 					if(!objCat.includes(j)) {
-						watsonCat.push({ name: j, frequency: wordObj[i].frequency });
+						watsonCat.push({ name: individualCat[j], frequency: wordObj[i].frequency });
 					}
 				}
+
+				console.log(watsonCat);
 
 				// for(cat of individualCat) {
 				// 	console.log(cat);
