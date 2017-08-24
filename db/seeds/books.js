@@ -1,45 +1,53 @@
-exports.seed = function(knex, Promise) {
+exports.seed = function(knex) {
   // Deletes ALL existing entries
   return knex('books').del()
     .then(function () {
-      let dataset = require('./fiction_test.json');
-      let extracted = [];
-      
-      for (i in dataset){
+      return new Promise((resolve, reject) => {
+        let marc = require('marcjs');
+        let fs = require('fs');
+        let reader = new marc.Iso2709Reader(fs.createReadStream('./db/seeds/msplit00000007.mrc'));
+        let record = new marc.Record();
+        let results = [];
 
-          let entries = dataset[i].fields
+        reader.on('data', function(record) {    
+
           let result = {
-              isbn: null,  
-              title: "",
-              author: "",
-              abstract: ""        
+            isbn: null,
+            title: "",
+            author: "",
+            abstract: ""
           }
-          
-          for (j in entries){
-            if (entries[j].hasOwnProperty("520")){
-                result.abstract = entries[j]["520"].subfields[0]["a"].replace(/"/g, "");
-            }else if(entries[j].hasOwnProperty("245")){
-                result.title = entries[j]["245"].subfields[0]["a"];
-            }else if(entries[j].hasOwnProperty("020") && result.isbn === null){
-                result.isbn = parseInt(entries[j]["020"].subfields[0]["a"]);
-            }else if(entries[j].hasOwnProperty("100")){
-                result.author = entries[j]["100"].subfields[0]["a"];
+        
+          let field = record.fields;
+
+          for (i in field){
+            if(field[i][0] === "020" && result.isbn === null){
+              result.isbn = parseInt(field[i][3]);
+            }else if(field[i][0] === "100" && field[i][3]){
+              result.author = field[i][3];
+            }else if(field[i][0] === "245" && field[i][3]){
+              result.title = field[i][3];
+            }else if(field[i][0] === "520" && field[i][3]){
+              result.abstract = field[i][3];
             }
           }
-      
-          if (result.title && result.abstract && result.isbn){
-            extracted.push(result);
-          }else{
-            continue;
-          }   
-      }
-      console.log(extracted.length);
-      return Promise.all(extracted);
+          if (result.author && result.isbn && result.abstract && result.title){
+            results.push(result);
+          }
+        });
+
+        reader.on('end', () => {
+          resolve(results)
+        });
+
+        // @todo
+        // reader.on('error', reject);
+      });
     })
-    .then(function(extracted){
-      return knex('books').insert(extracted);
+    .then((results) => {
+      console.log('Number of entries: ' + results.length);
+      knex('books').insert(results)
     })
-      // Inserts seed entries
     .catch(function(err) {
       console.error(err);
     })
