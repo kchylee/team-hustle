@@ -1,4 +1,5 @@
-exports.seed = function(knex) {
+exports.seed = function(knex, Promise) {
+  
   // Deletes ALL existing entries
   return knex('books').del()
     .then(function () {
@@ -8,10 +9,12 @@ exports.seed = function(knex) {
         let reader = new marc.Iso2709Reader(fs.createReadStream('./db/seeds/msplit00000007.mrc'));
         let record = new marc.Record();
         let results = [];
+        let id=1;
 
         reader.on('data', function(record) {    
 
           let result = {
+            id: id,
             isbn: null,
             title: "",
             author: "",
@@ -31,12 +34,14 @@ exports.seed = function(knex) {
               result.abstract = field[i][3];
             }
           }
+
           if (result.author && result.isbn && result.abstract && result.title){
             results.push(result);
+            id += 1;
           }
         });
 
-        reader.on('end', () => {
+        reader.on('end', function() {
           resolve(results)
         });
 
@@ -44,9 +49,9 @@ exports.seed = function(knex) {
         // reader.on('error', reject);
       });
     })
-    .then((results) => {
+    .then(function (results) {
       console.log('Number of entries: ' + results.length);
-      knex('books').insert(results)
+      return knex('books').insert(results);
     })
     .catch(function(err) {
       console.error(err);

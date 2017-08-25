@@ -37,12 +37,12 @@ exports.seed = function(knex, Promise) {
         }),
         knex('branch_book').insert({
           branch_id: 1,
-          book_id: 2,
+          book_id: 1,
           frequency: 40
         }),
         knex('branch_book').insert({
           branch_id: 3,
-          book_id: 3,
+          book_id: 1,
           frequency: 150
         })
       ])

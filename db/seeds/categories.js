@@ -1,6 +1,6 @@
 
 exports.seed = function(knex, Promise) {
-    // Deletes ALL existing entries
+    //Deletes ALL existing entries
     return knex('categories').del()
       .then(function () {
         // Inserts seed entries
@@ -34,21 +34,21 @@ exports.seed = function(knex, Promise) {
             category_id: 3
           }),
           knex('book_category').insert({
-            book_id: 2,
+            book_id: 1,
             category_id: 1
           }),
           knex('book_category').insert({
-            book_id: 2,
+            book_id: 1,
             category_id: 3
           }),
           knex('book_category').insert({
-            book_id: 2,
+            book_id: 1,
             category_id: 4
           }),
           knex('book_category').insert({
-            book_id: 3,
+            book_id: 1,
             category_id: 3
-          })
+          })          
         ])
       });
   };
