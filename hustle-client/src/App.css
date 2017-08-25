@@ -22,6 +22,21 @@ body {
   align-items: center;
 }
 
+
+.IBM-container {
+  align-self: flex-end;
+}
+
+.ibm-logo {
+  background-color: white;
+  padding: 4px;
+}
+
+.powered-text {
+  color: white;
+  font-size: 14px;
+}
+
 .TPL-logo {
   margin-top: 10px;
   max-width: 20%;
@@ -38,6 +53,7 @@ body {
   justify-content: center;
 }
 
+
 .text {
   color: white;
   font-size: 20px;
@@ -46,7 +62,7 @@ body {
 }
 
 .Selectors-branch {
-  width: 15%;
+  width: auto;
   margin-right: 10px;
   margin-left: 10px;
   font-family: 'Roboto', sans-serif;
