@@ -66,21 +66,50 @@ class App extends React.Component {
 			return categoryJSON;
 		});
 	}
-
+	
 	populateWordMap (catJSON) {
 
 
 		const wordObj = catJSON;
 		let objCat = [];
 		let objFreq = [];
+		let watsonCat = [];
 
-		for(var i=0; i < wordObj.length; i++)
-		{
-			objCat[i] = wordObj[i].category;
-			objFreq[i] = wordObj[i].frequency;
+		
+		for(let i=0; i < wordObj.length; i++) {
+			// divide each set of categories into individual categories
+			let individualCat = wordObj[i].category.split('/');
+			
+			for(let j=0; j < individualCat.length; j++) {
+				let cat = individualCat[j];
+				
+				// for each individual category, check if it already exists in category array
+				if(!objCat.includes(cat) && cat !== "") {
+					watsonCat.push({ name: cat, frequency: Number.parseInt(wordObj[i].frequency) });
+					objCat.push(cat);
+				} else if (objCat.includes(cat)) {
+					for (let obj of watsonCat) {
+						if (obj.name === cat) {
+							obj.frequency += Number.parseInt(wordObj[i].frequency);
+						}
+					}
+				}
+			}
 		}
-
-		 this.setState({
+		
+		// clear category and frequency arrays
+		objCat  = [];
+		objFreq = [];
+		
+		// push individual categories with corresponding frequencies
+		// into objCat and objFreq
+		for (let obj of watsonCat) {
+			objCat.push(obj.name);
+			objFreq.push(obj.frequency);
+		}
+		
+		console.log('pushed: ' + objFreq);
+		this.setState({
          	catArr: objCat,
  			freqArr: objFreq
  	      });
