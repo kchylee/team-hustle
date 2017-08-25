@@ -118,14 +118,17 @@ class App extends React.Component {
 	wordSizeNormalizer(num) {
 		const frequencyArr = this.state.freqArr;
 		const maxFontSize = 80;
-
-
+		const minFontSize = 30;
 
 		let maxFrequency = frequencyArr[0];
 		let minFrequency = frequencyArr[frequencyArr.length - 1];
 
 
-		const answer = ((num - minFrequency) / (maxFrequency - minFrequency)) * maxFontSize;
+		let answer = ((num - minFrequency) / (maxFrequency - minFrequency)) * maxFontSize;
+		console.log(answer);
+		if (answer < minFontSize){ 
+			answer = minFontSize;
+		}
 
 		return answer;
 		/*
